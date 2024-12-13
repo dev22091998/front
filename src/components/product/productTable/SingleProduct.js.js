@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../../../redux/features/product/productSlice";
 import { QRCodeCanvas } from "qrcode.react";
 import jsPDF from "jspdf";
+import "./singleProduct.css"
 
 
 const SingleProduct = () => {
@@ -66,28 +67,55 @@ const SingleProduct = () => {
   }
 
   return (
+    // <div className="single-product">
+    //   <h1>Mahsulot tasnifi</h1>
+    //   {product && (
+    //     <div>
+    //       <h2>{product.name}</h2>
+    //       <p><strong>Category: </strong> {product.category}</p>
+    //       <p><strong>Inventory:</strong> {product.inventory}</p>
+    //       <p><strong>Organization:</strong> {product.organization}</p>
+    //       <p><strong>Employee:</strong> {product.employee}</p>
+    //       <p><strong>Old Inventory:</strong> {product.old_inventory}</p>
+    //       <p><strong>Section:</strong> {product.section}</p>
+    //         {/* product.category === "Noutbook" || product.category === "Desktop" ? */}
+    //       <p><strong>Lan Mac address: </strong> {product.old_inventory}</p>
+    //       <p><strong>Wifi Mac address: </strong> {product.old_inventory}</p>
+    //       {/* QR-kodni yaratish */}
+    //       <div ref={qrRef}>
+    //         <QRCodeCanvas value={productUrl} />
+    //       </div>
+    //       <button onClick={generatePDF}>Download PDF</button>
+    //     </div>
+    //   )}
+    // </div>
     <div className="single-product">
-      <h1>Mahsulot tasnifi</h1>
-      {product && (
-        <div>
-          <h2>{product.name}</h2>
-          <p><strong>Category:</strong> {product.category}</p>
-          <p><strong>Inventory:</strong> {product.inventory}</p>
-          <p><strong>Organization:</strong> {product.organization}</p>
-          <p><strong>Employee:</strong> {product.employee}</p>
-          <p><strong>Old Inventory:</strong> {product.old_inventory}</p>
-          <p><strong>Section:</strong> {product.section}</p>
-            {/* product.category === "Noutbook" || product.category === "Desktop" ? */}
-          <p><strong>Lan Mac address: </strong> {product.old_inventory}</p>
-          <p><strong>Wifi Mac address: </strong> {product.old_inventory}</p>
-          {/* QR-kodni yaratish */}
-          <div ref={qrRef}>
-            <QRCodeCanvas value={productUrl} />
-          </div>
-          <button onClick={generatePDF}>Download PDF</button>
-        </div>
-      )}
+  <h1>Mahsulot tasnifi</h1>
+  {product && (
+    <div className="product-card">
+      <h2 className="product-title">{product.name}</h2>
+      <p className="product-info"><strong>Categoriyasi: </strong>{product.category}</p>
+      <p className="product-info"><strong>Inventar raqami: </strong>{product.inventory}</p>
+      <p className="product-info"><strong>Tashkilot: </strong>{product.organization}</p>
+      <p className="product-info"><strong>Foydalanuvchi: </strong>{product.employee}</p>
+      <p className="product-info"><strong>Eski inventar raqami: </strong>{product.old_inventory}</p>
+      <p className="product-info"><strong>Bo'limi: </strong>{product.section}</p>
+
+      <div className="mac-address">
+        <p><strong>Lan Mac addresi: </strong>{product.old_inventory}</p>
+        <p><strong>Wifi Mac addresi: </strong>{product.old_inventory}</p>
+      </div>
+
+      {/* QR-kodni yaratish */}
+      <div ref={qrRef} className="qr-code">
+        <QRCodeCanvas value={productUrl} />
+      </div>
+
+      <button onClick={generatePDF} className="download-btn">Download PDF</button>
     </div>
+  )}
+</div>
+
   );
 };
 
